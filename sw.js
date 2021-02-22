@@ -30,14 +30,10 @@ const APP_SHELL_INMUTABLE = [
 self.addEventListener('install', e => {
 
     const staticCache = caches.open(STATIC_CACHE)
-        .then(cache => {
-            return cache.addAll(APP_SHELL);
-        });
+        .then(cache => cache.addAll(APP_SHELL));
 
     const inmutableCache = caches.open(INMUTABLE_CACHE)
-        .then(cache => {
-            return cache.addAll(APP_SHELL_INMUTABLE);
-        });
+        .then(cache => cache.addAll(APP_SHELL_INMUTABLE));
 
     e.waitUntil(Promise.all([staticCache, inmutableCache]));
 });
